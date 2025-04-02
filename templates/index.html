@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Online Library</title>
+		<link
+			rel="stylesheet"
+			href="{{ url_for('static', filename='css/styles.css') }}"
+		/>
+	</head>
+	
+	<body>
+		<header>
+			<h1>Вітаємо в нашій онлайн бібліотеці!</h1>
+			<nav>
+				<ul>
+					<li><a href="{{ url_for('home') }}">Головна</a></li>
+					<li><a href="{{ url_for('about') }}">Про нас</a></li>
+				</ul>
+			</nav>
+		</header>
+		<main>
+			<section id="books">
+				<h2>Книги</h2>
+				<div class="books-grid">
+					<div class="book-card">
+						<a href="#" onclick="openBookModal({ title: 'Наука для душі, нотатки для раціоналіста', author: 'Річард Докінс', category: 'Наука', text: '/get_book/1' }); return false;">
+							<img src="{{ url_for('static', filename='images/science1.png') }}" alt="Наука для душі, нотатки для раціоналіста" />
+							<h3>Наука для душі, нотатки для раціоналіста</h3>
+							<p>Автор: Річард Докінс</p>
+						</a>
+					</div>
+					<div class="book-card">
+						<a href="#" onclick="openBookModal({ title: 'Теорія всього', author: 'Стівен Гокінґ', category: 'Наука', text: '/get_book/2' }); return false;">
+							<img src="{{ url_for('static', filename='images/science2.png') }}" alt="Теорія всього" />
+							<h3>Теорія всього</h3>
+							<p>Автор: Стівен Гокінґ</p>
+						</a>
+					</div>
+					<div class="book-card">
+						<a href="#" onclick="openBookModal({ title: 'Відьмак. Останнє бажання', author: 'Анджей Сапковський', category: 'Фентезі', text: '/get_book/3' }); return false;">
+							<img src="{{ url_for('static', filename='images/fantasy1.jpeg') }}" alt="Відьмак. Останнє бажання" />
+							<h3>Відьмак. Останнє бажання</h3>
+							<p>Автор: Анджей Сапковський</p>
+						</a>
+					</div>
+					<div class="book-card">
+						<a href="#" onclick="openBookModal({ title: 'До останнього подиху', author: 'Арментроут Дженнифер', category: 'Фентезі', text: '/get_book/4' }); return false;">
+							<img src="{{ url_for('static', filename='images/fantasy2.jpg') }}" alt="До останнього подиху" />
+							<h3>До останнього подиху</h3>
+							<p>Автор: Арментроут Дженнифер</p>
+						</a>
+					</div>
+					<div class="book-card">
+						<a href="#" onclick="openBookModal({ title: 'Мистецтво війни', author: 'Сунь-цзи', category: 'Історія', text: '/get_book/5' }); return false;">
+							<img src="{{ url_for('static', filename='images/history1.jpg') }}" alt="Мистецтво війни" />
+							<h3>Мистецтво війни</h3>
+							<p>Автор: Сунь-цзи</p>
+						</a>
+					</div>
+					<div class="book-card">
+						<a href="#" onclick="openBookModal({ title: 'Загадка опівнічного павича', author: 'Кетрін Вудфайн', category: 'Загадка', text: '/get_book/6' }); return false;">
+							<img src="{{ url_for('static', filename='images/mystery1.jpg') }}" alt="Загадка опівнічного павича" />
+							<h3>Загадка опівнічного павича</h3>
+							<p>Автор: Кетрін Вудфайн</p>
+						</a>
+					</div>
+					<div class="book-card">
+						<a href="#" onclick="openBookModal({ title: 'Їсти, молитися, кохати', author: 'Елізабет Ґілберт', category: 'Романтика', text: '/get_book/7' }); return false;">
+							<img src="{{ url_for('static', filename='images/romance1.png') }}" alt="Їсти, молитися, кохати" />
+							<h3>Їсти, молитися, кохати</h3>
+							<p>Автор: Елізабет Ґілберт</p>
+						</a>
+					</div>
+					<div class="book-card">
+						<a href="#" onclick="openBookModal({ title: 'Покинь якщо кохаєш', author: 'К. Гувер', category: 'Романтика', text: '/get_book/8' }); return false;">
+							<img src="{{ url_for('static', filename='images/romance2.jpg') }}" alt="Покинь якщо кохаєш" />
+							<h3>Покинь якщо кохаєш</h3>
+							<p>Автор: К. Гувер</p>
+						</a>
+					</div>
+					<div class="book-card">
+						<a href="#" onclick="openBookModal({ title: 'Таємниця загублених кавунів', author: 'Жан-Крістоф Дерр\'єн, Фріжель', category: 'Для дітей', text: '/get_book/9' }); return false;">
+							<img src="{{ url_for('static', filename='images/children1.jpeg') }}" alt="Таємниця загублених кавунів" />
+							<h3>Таємниця загублених кавунів</h3>
+							<p>Автор: Жан-Крістоф Дерр'єн, Фріжель</p>
+						</a>
+					</div>
+				</div>
+			</section>
+			<div class="carousel-container">
+				<h2>Нові надходження</h2>
+				<div class="carousel">
+					<button class="prev">&#10094;</button>
+					<div class="carousel-track-container">
+						<ul class="carousel-track">
+							<li class="carousel-item">
+    <a href="{{ url_for('book1') }}" class="book-card" target="_blank">
+        <div class="book-image-container">
+            <img
+                class="book-image"
+                src="{{ url_for('static', filename='images/science1.png') }}"
+                alt="Книга 1"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+            />
+            <div class="book-placeholder" style="display: none">
+                Назва книги 1
+            </div>
+            <span class="book-badge new-badge">Новинка</span>
+        </div>
+        <h3 class="book-title">Наука для душі, нотатки для раціоналіста</h3>
+        <p class="book-author">Автор <br />Річард Докінс</p>
+    </a>
+</li>
+							<div id="bookContent"></div>
+							<li class="carousel-item">
+								<a href="/book/2" class="book-card">
+									<div class="book-image-container">
+										<img
+											class="book-image"
+											src="static/images/science2.png"
+											alt="Книга 2"
+											onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+										/>
+										<div class="book-placeholder" style="display: none">
+											Назва книги 2
+										</div>
+										<span class="book-badge bestseller-badge">Бестселер</span>
+									</div>
+									<h3 class="book-title">Теорія всього</h3>
+									<p class="book-author">
+										Автор <br />
+										Стівен Гокінґ
+									</p>
+								</a>
+							</li>
+							<li class="carousel-item">
+								<a href="/templates/book1.html" class="book-card">
+									<div class="book-image-container">
+										<img
+											class="book-image"
+											src="static/images/fantasy1.jpeg"
+											alt="Книга 3"
+											onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+										/>
+										<div class="book-placeholder" style="display: none">
+											Назва книги 3
+										</div>
+										<span class="book-badge sale-badge">-20%</span>
+									</div>
+									<h3 class="book-title">Відьмак. Останнє бажання</h3>
+									<p class="book-author">
+										Автор <br />
+										Анджей Сапковський
+									</p>
+								</a>
+							</li>
+							<li class="carousel-item">
+								<a href="/book/4" class="book-card">
+									<div class="book-image-container">
+										<img
+											class="book-image"
+											src="static/images/fantasy2.jpg"
+											alt="Книга 4"
+											onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+										/>
+										<div class="book-placeholder" style="display: none">
+											Назва книги 4
+										</div>
+									</div>
+									<h3 class="book-title">До останнього подиху</h3>
+									<p class="book-author">
+										Автор <br />
+										Арментроут Дженнифер
+									</p>
+								</a>
+							</li>
+							<li class="carousel-item">
+								<a href="/book/5" class="book-card">
+									<div class="book-image-container">
+										<img
+											class="book-image"
+											src="static/images/history1.jpg"
+											alt="Книга 5"
+											onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+										/>
+										<div class="book-placeholder" style="display: none">
+											Назва книги 5
+										</div>
+										<span class="book-badge bestseller-badge">Бестселер</span>
+									</div>
+									<h3 class="book-title">Мистецтво війни</h3>
+									<p class="book-author">
+										Автор <br />
+										Сунь-цзи
+									</p>
+								</a>
+							</li>
+							<li class="carousel-item">
+								<a href="/book/6" class="book-card">
+									<div class="book-image-container">
+										<img
+											class="book-image"
+											src="static/images/mystery1.jpg"
+											alt="Книга 6"
+											onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+										/>
+										<div class="book-placeholder" style="display: none">
+											Назва книги 6
+										</div>
+									</div>
+									<h3 class="book-title">Загадка опівнічного павича</h3>
+									<p class="book-author">
+										Автор <br />
+										Кетрін Вудфайн
+									</p>
+								</a>
+							</li>
+							<li class="carousel-item">
+								<a href="/book/7" class="book-card">
+									<div class="book-image-container">
+										<img
+											class="book-image"
+											src="static/images/romance1.png"
+											alt="Книга 7"
+											onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+										/>
+										<div class="book-placeholder" style="display: none">
+											Назва книги 7
+										</div>
+									</div>
+									<h3 class="book-title">Їсти, молитися, кохати</h3>
+									<p class="book-author">
+										Автор <br />
+										Елізабет Ґілберт
+									</p>
+								</a>
+							</li>
+							<li class="carousel-item">
+								<a href="/book/8" class="book-card">
+									<div class="book-image-container">
+										<img
+											class="book-image"
+											src="static/images/romance2.jpg"
+											alt="Книга 8"
+											onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+										/>
+										<div class="book-placeholder" style="display: none">
+											Назва книги 8
+										</div>
+									</div>
+									<h3 class="book-title">Покинь якщо кохаєш</h3>
+									<p class="book-author">
+										Автор <br />
+										К. Гувер
+									</p>
+								</a>
+							</li>
+							<li class="carousel-item">
+								<a href="/book/9" class="book-card">
+									<div class="book-image-container">
+										<img
+											class="book-image"
+											src="static/images/children1.jpeg"
+											alt="Книга 9"
+											onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+										/>
+										<div class="book-placeholder" style="display: none">
+											Назва книги 9
+										</div>
+									</div>
+									<h3 class="book-title">Таємниця загублених кавунів</h3>
+									<p class="book-author">
+										Автор <br />
+										Жан-Крістоф Дерр'єн, <br />
+										Фріжель
+									</p>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<button class="next">&#10095;</button>
+				</div>
+				<div class="carousel-progress">
+					<span class="progress-dot active"></span>
+					<span class="progress-dot"></span>
+					<span class="progress-dot"></span>
+					<span class="progress-dot"></span>
+				</div>
+			</div>
+
+			
+		</main>
+		<footer>
+			<p>&copy; 2025 Online Library. All rights reserved.</p>
+		</footer>
+
+		<div class="book-modal" id="bookModal">
+			<div class="book-content">
+				<span class="close-button">&times;</span>
+				<div class="book-header">
+					<h2 id="modalBookTitle">Назва книги</h2>
+					<p id="modalBookAuthor">Автор</p>
+					<p id="modalBookCategory">Категорія</p>
+				</div>
+				<div class="book-reader">
+					<div class="book-pages" id="bookPages">
+					
+
+		<script>
+			function openBookModal(book) {
+    const bookModal = document.getElementById('bookModal');
+    const modalBookTitle = document.getElementById('modalBookTitle');
+    const modalBookAuthor = document.getElementById('modalBookAuthor');
+    const modalBookCategory = document.getElementById('modalBookCategory');
+    const bookPagesContainer = document.getElementById('bookPages');
+
+    // Оновлення заголовка, автора та категорії
+    modalBookTitle.textContent = book.title;
+    modalBookAuthor.textContent = "Автор: " + book.author;
+    modalBookCategory.textContent = "Категорія: " + book.category;
+
+    // Очищення контейнера перед додаванням нового контенту
+    bookPagesContainer.innerHTML = "<p>Завантаження...</p>";
+
+    // Завантаження тексту книги
+    fetch(book.text)
+        .then(response => response.json())
+        .then(data => {
+            if (Array.isArray(data.text)) {
+                // Якщо текст книги розбитий на сторінки
+                bookPagesContainer.innerHTML = data.text
+                    .map((page, index) => `
+                        <div class="book-page" style="display: ${index === 0 ? 'block' : 'none'};">
+                            ${page}
+                        </div>`)
+                    .join('');
+            } else {
+                // Якщо текст книги не розбитий на сторінки
+                bookPagesContainer.innerHTML = `<p>${data.text}</p>`;
+            }
+        })
+        .catch(error => {
+            console.error('Помилка завантаження тексту книги:', error);
+            bookPagesContainer.innerHTML = "<p>Не вдалося завантажити текст книги.</p>";
+        });
+
+    // Відображення модального вікна
+    bookModal.style.display = "block";
+    document.body.style.overflow = "hidden";
+}
+
+// Закриття модального вікна
+document.querySelector('.close-button').addEventListener('click', () => {
+    document.getElementById('bookModal').style.display = "none";
+    document.body.style.overflow = "";
+});
+
+
+			// Функція для перевірки завантаження зображень
+			function handleImages() {
+				const images = document.querySelectorAll('.book-image')
+				images.forEach(img => {
+					if (img.complete && img.naturalHeight === 0) {
+						img.style.display = 'none'
+						img.nextElementSibling.style.display = 'flex'
+					}
+				})
+			}
+
+			// Викликати функцію після завантаження сторінки
+			window.addEventListener('load', handleImages)
+
+			const track = document.querySelector('.carousel-track')
+			const prevButton = document.querySelector('.prev')
+			const nextButton = document.querySelector('.next')
+			const items = document.querySelectorAll('.carousel-item')
+			const dots = document.querySelectorAll('.progress-dot')
+
+			// Розрахунок ширини елемента з урахуванням margin
+			const itemStyle = window.getComputedStyle(items[0])
+			const itemWidth =
+				items[0].offsetWidth +
+				parseInt(itemStyle.marginLeft) +
+				parseInt(itemStyle.marginRight)
+
+			let index = 0
+			let currentActiveDot = 0
+			const container = document.querySelector('.carousel-track-container')
+			let visibleItemCount = Math.floor(container.offsetWidth / itemWidth)
+			if (visibleItemCount < 1) visibleItemCount = 1
+			const totalSlides = Math.ceil(items.length / visibleItemCount)
+
+			// Створення потрібної кількості точок прогресу
+			const updateProgressDots = () => {
+				const progressContainer = document.querySelector('.carousel-progress')
+				progressContainer.innerHTML = '' // Очистити контейнер
+
+				for (let i = 0; i < totalSlides; i++) {
+					const dot = document.createElement('span')
+					dot.className = 'progress-dot' + (i === 0 ? ' active' : '')
+					dot.dataset.index = i
+					dot.addEventListener('click', () => {
+						currentActiveDot = i
+						index = i * visibleItemCount
+						track.style.transform = `translateX(-${index * itemWidth}px)`
+						updateDotActive()
+					})
+					progressContainer.appendChild(dot)
+				}
+			}
+
+			// Ініціалізація точок прогресу
+			updateProgressDots()
+
+			// Оновлення активної точки
+			function updateDotActive() {
+				const dots = document.querySelectorAll('.progress-dot')
+				dots.forEach((dot, i) => {
+					dot.classList.toggle('active', i === currentActiveDot)
+				})
+			}
+
+			// Обробник кліку "Далі"
+			nextButton.addEventListener('click', () => {
+				if (index >= items.length - visibleItemCount) {
+					// Плавне повернення до початку
+					index = 0
+					currentActiveDot = 0
+				} else {
+					index += visibleItemCount
+					currentActiveDot = Math.min(
+						Math.floor(index / visibleItemCount),
+						totalSlides - 1
+					)
+				}
+
+				track.style.transform = `translateX(-${index * itemWidth}px)`
+				updateDotActive()
+			})
+
+			// Обробник кліку "Назад"
+			prevButton.addEventListener('click', () => {
+				if (index <= 0) {
+					// Плавне повернення до кінця
+					index = Math.max(0, items.length - visibleItemCount)
+					currentActiveDot = totalSlides - 1
+				} else {
+					index -= visibleItemCount
+					currentActiveDot = Math.max(Math.floor(index / visibleItemCount), 0)
+				}
+
+				track.style.transform = `translateX(-${index * itemWidth}px)`
+				updateDotActive()
+			})
+
+			// Автоматична прокрутка
+			let autoScrollInterval = setInterval(() => {
+				nextButton.click()
+			}, 5000)
+
+			// Зупинка автоматичної прокрутки при наведенні
+			document.querySelector('.carousel').addEventListener('mouseenter', () => {
+				clearInterval(autoScrollInterval)
+			})
+
+			// Відновлення автоматичної прокрутки при виході курсора
+			document.querySelector('.carousel').addEventListener('mouseleave', () => {
+				autoScrollInterval = setInterval(() => {
+					nextButton.click()
+				}, 5000)
+			})
+
+			// Адаптивність при зміні розміру вікна
+			window.addEventListener('resize', () => {
+				const newVisibleItemCount = Math.max(
+					1,
+					Math.floor(container.offsetWidth / itemWidth)
+				)
+				if (newVisibleItemCount !== visibleItemCount) {
+					visibleItemCount = newVisibleItemCount
+					// Оновити кількість слайдів
+					const newTotalSlides = Math.ceil(items.length / visibleItemCount)
+					if (newTotalSlides !== totalSlides) {
+						// Оновити точки прогресу
+						updateProgressDots()
+					}
+					// Переналаштувати поточний індекс
+					index = Math.min(index, items.length - visibleItemCount)
+					currentActiveDot = Math.min(currentActiveDot, newTotalSlides - 1)
+					track.style.transform = `translateX(-${index * itemWidth}px)`
+					updateDotActive()
+				}
+			})
+
+			// Перевірка натискання клавіш
+			document.addEventListener('keydown', e => {
+				if (e.key === 'ArrowLeft') {
+					prevButton.click()
+				} else if (e.key === 'ArrowRight') {
+					nextButton.click()
+				}
+			})
+
+			// Підтримка свайпів на мобільних пристроях
+			let touchStartX = 0
+			let touchEndX = 0
+
+			track.addEventListener('touchstart', e => {
+				touchStartX = e.changedTouches[0].screenX
+			})
+
+			track.addEventListener('touchend', e => {
+				touchEndX = e.changedTouches[0].screenX
+				handleSwipe()
+			})
+
+			function handleSwipe() {
+				if (touchEndX < touchStartX - 50) {
+					// Свайп вліво (далі)
+					nextButton.click()
+				} else if (touchEndX > touchStartX + 50) {
+					// Свайп вправо (назад)
+					prevButton.click()
+				}
+			}
+
+			// Код для роботи з переглядом книг
+			const bookModal = document.getElementById('bookModal')
+			const closeButton = document.querySelector('.close-button')
+			const books = document.querySelectorAll('.book-card')
+			const modalBookTitle = document.getElementById('modalBookTitle')
+			const modalBookAuthor = document.getElementById('modalBookAuthor')
+			const modalBookCategory = document.getElementById('modalBookCategory')
+			const bookPages = document.getElementById('bookPages')
+			const prevPageBtn = document.getElementById('prevPage')
+			const nextPageBtn = document.getElementById('nextPage')
+			const pageCounter = document.getElementById('pageCounter')
+
+			// Змінні для керування сторінками
+			let currentPage = 0
+			let totalPages = 0
+
+			// Тексти книг (можна замінити на завантаження з сервера)
+
+			// Відкриття модального вікна книги
+			books.forEach(book => {
+				book.addEventListener('click', function (e) {
+					e.preventDefault()
+
+					const bookId = this.getAttribute('data-book-id')
+					const title = this.querySelector('.book-title').textContent
+					const author = this.querySelector('.book-author').textContent
+					let category = ''
+
+					// Визначення категорії за ідентифікатором або класом
+					if (bookId === '1' || bookId === '2') category = 'Наука'
+					else if (bookId === '3' || bookId === '4') category = 'Фентезі'
+					else if (bookId === '5') category = 'Історія'
+					else if (bookId === '6') category = 'Загадка'
+					else if (bookId === '7' || bookId === '8') category = 'Романтика'
+					else if (bookId === '9') category = 'Для дітей'
+
+					// Оновлення заголовка модального вікна
+					modalBookTitle.textContent = title
+					modalBookAuthor.textContent = author
+					modalBookCategory.textContent = 'Категорія: ' + category
+
+					// Завантаження вмісту книги
+					loadBookContent(bookId)
+
+					// Показ модального вікна
+					bookModal.style.display = 'block'
+					document.body.style.overflow = 'hidden' // Заборона прокрутки сторінки
+				})
+			})
+
+			// Закриття модального вікна
+			closeButton.addEventListener('click', () => {
+				bookModal.style.display = 'none'
+				document.body.style.overflow = '' // Відновлення прокрутки сторінки
+			})
+
+			// Закриття модального вікна при кліку поза змістом
+			bookModal.addEventListener('click', function (e) {
+				if (e.target === this) {
+					bookModal.style.display = 'none'
+					document.body.style.overflow = ''
+				}
+			})
+
+			
+			// Завантаження вмісту книги
+			function loadBookContent(bookId) {
+				bookPages.innerHTML = '' // Очистка попереднього вмісту
+
+				if (bookContents[bookId]) {
+					const pages = bookContents[bookId]
+					totalPages = pages.length
+
+					// Створення сторінок книги
+					pages.forEach((pageContent, index) => {
+						const pageElement = document.createElement('div')
+						pageElement.className = 'book-page'
+						pageElement.innerHTML = pageContent
+						pageElement.style.display = index === 0 ? 'block' : 'none' // Показуємо тільки першу сторінку
+						bookPages.appendChild(pageElement)
+					})
+
+					// Скидання лічильника сторінок
+					currentPage = 0
+					updatePageCounter()
+					updatePageButtons()
+				}
+			}
+
+			// Оновлення лічильника сторінок
+			function updatePageCounter() {
+				pageCounter.textContent = `Сторінка ${currentPage + 1} з ${totalPages}`
+			}
+
+			// Оновлення стану кнопок навігації
+			function updatePageButtons() {
+				prevPageBtn.disabled = currentPage === 0
+				nextPageBtn.disabled = currentPage === totalPages - 1
+			}
+
+			// Обробка кліку по кнопці "Попередня сторінка"
+			prevPageBtn.addEventListener('click', () => {
+				if (currentPage > 0) {
+					// Приховуємо поточну сторінку
+					bookPages.children[currentPage].style.display = 'none'
+					// Зменшуємо лічильник
+					currentPage--
+					// Показуємо попередню сторінку
+					bookPages.children[currentPage].style.display = 'block'
+					// Оновлюємо лічильник і кнопки
+					updatePageCounter()
+					updatePageButtons()
+				}
+			})
+
+			// Обробка кліку по кнопці "Наступна сторінка"
+			nextPageBtn.addEventListener('click', () => {
+				if (currentPage < totalPages - 1) {
+					// Приховуємо поточну сторінку
+					bookPages.children[currentPage].style.display = 'none'
+					// Збільшуємо лічильник
+					currentPage++
+					// Показуємо наступну сторінку
+					bookPages.children[currentPage].style.display = 'block'
+					// Оновлюємо лічильник і кнопки
+					updatePageCounter()
+					updatePageButtons()
+				}
+			})
+
+			// Обробка натискання клавіш для перегортання сторінок
+			document.addEventListener('keydown', e => {
+				if (bookModal.style.display === 'block') {
+					if (e.key === 'ArrowLeft' && !prevPageBtn.disabled) {
+						prevPageBtn.click()
+					} else if (e.key === 'ArrowRight' && !nextPageBtn.disabled) {
+						nextPageBtn.click()
+					} else if (e.key === 'Escape') {
+						closeButton.click()
+					}
+				}
+			})
+
+			// Обробка категорій
+			const categoryLinks = document.querySelectorAll('.category-link')
+			categoryLinks.forEach(link => {
+				link.addEventListener('click', function (e) {
+					e.preventDefault()
+					const category = this.getAttribute('data-category')
+					// Тут можна додати логіку фільтрації книг за категорією
+					alert(`Ви обрали категорію: ${category}`)
+					// Або перенаправлення на сторінку категорії
+					// window.location.href = `/category/${category}`;
+				})
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Online Library</title>
+		<link
+			rel="stylesheet"
+			href="{{ url_for('static', filename='css/styles.css') }}"
+		/>
+		<style>
+			body {
+				font-family: 'Roboto', Arial, sans-serif;
+				line-height: 1.6;
+				margin: 0;
+				padding: 0;
+				color: #333;
+				background: linear-gradient(to bottom, #ffffff, #f1f8e9);
+			}
+
+			header {
+				background: linear-gradient(135deg, #0a4b78, #043959);
+				color: white;
+				padding: 1.5rem 0;
+				text-align: center;
+				box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+			}
+
+			header h1 {
+				margin: 0;
+				font-size: 2.8rem;
+				font-weight: bold;
+			}
+
+			nav ul {
+				list-style: none;
+				padding: 0;
+				display: flex;
+				justify-content: center;
+				margin: 1rem 0 0;
+			}
+
+			nav ul li {
+				margin: 0 1.5rem;
+			}
+
+			nav ul li a {
+				color: white;
+				text-decoration: none;
+				font-weight: bold;
+				font-size: 1.1rem;
+				transition: color 0.3s ease;
+			}
+
+			nav ul li a:hover {
+				color: #c8e6c9;
+			}
+
+			.hero h2 {
+				font-size: 2.5rem;
+				margin-bottom: 1rem;
+			}
+
+			.hero p {
+				font-size: 1.3rem;
+				margin-bottom: 2rem;
+			}
+
+			.hero .btn {
+				background: #043959;
+				color: white;
+				padding: 1rem 2rem;
+				text-decoration: none;
+				border-radius: 30px;
+				font-size: 1.1rem;
+				transition: background 0.3s ease;
+			}
+
+			.hero .btn:hover {
+				background: #043959;
+			}
+
+			.features {
+				padding: 3rem 1rem;
+				text-align: center;
+				background: #ffffff;
+			}
+
+			.features h2 {
+				margin-bottom: 2rem;
+				color: #043959;
+				font-size: 2rem;
+			}
+
+			.feature-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+				gap: 2rem;
+			}
+
+			.feature-item {
+				background: #e8f5e9;
+				padding: 2rem;
+				border-radius: 10px;
+				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+				transition: transform 0.3s ease, box-shadow 0.3s ease;
+			}
+
+			.feature-item:hover {
+				transform: translateY(-5px);
+				box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+			}
+
+			.feature-item h3 {
+				color: #043959;
+				margin-bottom: 1rem;
+			}
+
+			.featured-view {
+				padding: 3rem 1rem;
+				background: #f1f8e9;
+			}
+
+			.featured-view h2 {
+				text-align: center;
+				margin-bottom: 2rem;
+				color: #043959;
+				font-size: 2rem;
+			}
+
+			.featured-book {
+				display: flex;
+				flex-wrap: wrap;
+				align-items: center;
+				justify-content: center;
+				gap: 2rem;
+			}
+
+			.featured-book img {
+				max-width: 250px;
+				border-radius: 10px;
+				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			}
+
+			.book-details {
+				max-width: 450px;
+			}
+
+			.book-details h3 {
+				color: #043959;
+				margin-bottom: 1rem;
+			}
+
+			.book-details p {
+				margin: 0.5rem 0;
+			}
+
+			.book-details .btn {
+				display: inline-block;
+				background: #043959;
+				color: white;
+				padding: 1rem 2rem;
+				text-decoration: none;
+				border-radius: 30px;
+				margin-top: 1.5rem;
+				transition: background 0.3s ease;
+			}
+
+			.book-details .btn:hover {
+				background: #043959;
+			}
+
+			footer {
+				text-align: center;
+				padding: 1.5rem 0;
+				background: #043959;
+				color: white;
+				margin-top: 3rem;
+				font-size: 0.9rem;
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<h1>Вітаємо в нашій онлайн бібліотеці!</h1>
+			<nav>
+				<ul>
+					<li><a href="{{ url_for('home') }}">Головна</a></li>
+					<li><a href="{{ url_for('about') }}">Про нас</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<section
+			class="hero"
+			style="
+				text-align: center;
+				padding: 3rem 1rem;
+				background: linear-gradient(to bottom, #043959, #0a4b78);
+				color: white;
+			"
+		>
+			<h2 style="font-size: 3rem; margin-bottom: 1rem">
+				Відкрийте для себе світ знань
+			</h2>
+		</section>
+
+		<main>
+			<section class="features">
+				<h2 class="section-title">Чому варто обрати нашу бібліотеку?</h2>
+				<div class="feature-grid">
+					<div class="feature-item">
+						<img
+							src="{{ url_for('static', filename='icons/clock.svg') }}"
+							alt="Доступ 24/7"
+						/>
+						<h3>Доступ 24/7</h3>
+						<p>Читайте улюблені книги будь-де і будь-коли</p>
+					</div>
+					<div class="feature-item">
+						<img
+							src="{{ url_for('static', filename='icons/library.svg') }}"
+							alt="Велика колекція"
+						/>
+						<h3>Велика колекція</h3>
+						<p>Понад 10 000 книг різних жанрів</p>
+					</div>
+					<div class="feature-item">
+						<img
+							src="{{ url_for('static', filename='icons/search.svg') }}"
+							alt="Легкий пошук"
+						/>
+						<h3>Легкий пошук</h3>
+						<p>
+							Швидко знаходьте книги за допомогою нашої розумної системи пошуку
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<section class="featured-view">
+				<h2>Книга місяця</h2>
+				<div class="featured-book">
+					<img
+						src="{{ url_for('static', filename='images/fantasy1.jpeg') }}"
+						alt="Обкладинка книги місяця"
+					/>
+					<div class="book-details">
+						<h3>Відьмак. Останнє бажання</h3>
+						<p><strong>Автор:</strong> Анджей Сапковський</p>
+						<p><strong>Жанр:</strong> Фентезі</p>
+						<p>
+							<strong>Опис:</strong> Захоплююча історія, яка триматиме вас у
+							напрузі до останньої сторінки.
+						</p>
+						<a href="#" class="btn">Дізнатися більше</a>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<footer>
+			<p class="copyright">&copy; 2025 Online Library. All rights reserved.</p>
+		</footer>
+	</body>
+</html>
